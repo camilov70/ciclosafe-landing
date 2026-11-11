@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://camilov70.github.io/ciclosafe-landing/sitemap.xml
