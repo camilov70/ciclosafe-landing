@@ -55,73 +55,7 @@ if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
 }
 
-// =====================================
-// VALIDACIÓN DEL FORMULARIO
-// =====================================
 
-const contactForm = document.getElementById("contactForm");
-const formMessage = document.getElementById("formMessage");
-
-if (contactForm && formMessage) {
-
-    contactForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
-
-        const nombre = document.getElementById("nombre").value.trim();
-        const correo = document.getElementById("correo").value.trim();
-        const servicio = document.getElementById("servicio").value;
-        const mensaje = document.getElementById("mensaje").value.trim();
-
-        if (!nombre || !correo || !servicio || !mensaje) {
-            formMessage.textContent =
-                "Por favor, completa todos los campos.";
-            return;
-        }
-
-        const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
-
-        if (!correoValido) {
-            formMessage.textContent =
-                "Por favor, ingresa un correo válido.";
-            return;
-        }
-
-        formMessage.textContent = "Enviando mensaje...";
-
-        const parametros = {
-            nombre: nombre,
-            correo: correo,
-            servicio: servicio,
-            mensaje: mensaje
-        };
-
-        try {
-
-            await emailjs.send(
-                "service_8bfnthc",
-                "template_rqjnf67",
-                parametros
-            );
-
-            formMessage.textContent =
-                "¡Gracias, " + nombre +
-                "! Tu mensaje fue enviado correctamente. 🚴";
-
-            contactForm.reset();
-
-        } catch (error) {
-
-            console.error("Error al enviar:", error);
-
-            formMessage.textContent =
-                "No se pudo enviar el mensaje. Inténtalo nuevamente.";
-
-        }
-
-    });
-
-}
 
 
 
@@ -213,15 +147,7 @@ if (contactForm && formMessage) {
         // Por ahora no se envía información a un servidor.
         // Más adelante podemos integrar EmailJS.
 
-        formMessage.textContent =
-            "¡Gracias, " + nombre +
-            "! El formulario funciona correctamente. Pronto habilitaremos el envío de mensajes.";
-
-        contactForm.reset();
-
-    });
-
-}
+        
 
 // =====================================
 // ANIMACIÓN SUAVE DE ENTRADA
